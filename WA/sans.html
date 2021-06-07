@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<div>
+		
+		<img id="sans" src="1.gif">
+		<br/>
+		<p id="target"></p><span id="cursor">|</span>
+
+
+		<audio id="music" src="./Megalovania.mp3"></audio>
+
+
+	</div>
+
+
+<style>
+
+	body{
+		background-color: black;
+	}
+	
+	#target{
+		color: white;
+		display: inline;
+	}
+
+	#cursor{
+		color: white;
+		animation-name: blink;
+		animation-iteration-count: infinite;
+		animation-duration: .50s;
+	}
+
+	@keyframes blink{
+		50%{
+			opacity: 0;
+		}
+	}
+
+</style>
+
+
+<script>
+
+	var target = document.getElementById('target');
+
+	const script1 = "정말 아름다운 날이야.";
+
+	const script2 = "새들은 지저귀고, 꽃들은 피어나고...";
+
+	const script3 = "이런 날엔, 너 같은 꼬마들은...";
+
+	const script4 = "지옥에서 불타 버려야 해.";
+
+	var playSong = false;
+
+
+	var say = (arg, time)=>{
+		setTimeout(()=>{
+
+		target.textContent = "";
+
+		for(var i in arg){
+
+		  (function(x){
+		    setTimeout(function(){
+
+
+		    	target.textContent += arg[x];
+
+		    	if(arg != script4){
+			    	var audio = new Audio('sans.mp3');
+			    	audio.play();
+		    	}
+		    	else{
+		    		document.getElementById('sans').setAttribute('src', '2.gif');
+
+		    		if(! playSong)
+		    		{
+		    			var audio = new Audio('Megalovania.mp3');
+			    		audio.play();
+			    		playSong=true;
+		    		}
+
+		    	}
+
+		    }, 100*x);
+		  })(i);
+
+		}
+
+
+		}, time)
+
+	}
+
+
+
+
+
+	say(script1,1000)
+	say(script2, 5000)
+	say(script3, 10000)
+	say(script4, 15000)
+
+
+</script>
+
+</body>
+</html>
